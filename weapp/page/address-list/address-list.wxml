@@ -1,0 +1,39 @@
+<import src="../../component/Right/Right.wxml"/>
+
+<block wx:if="{{visible}}">
+    <view class="empty" wx:if="{{list.length <= 0}}">
+        <image class="empty__img" mode="aspectFill" src="/static/address-list/empty.png"/>
+        <view class="empty__text">还没有收货地址哦</view>
+        <view class="app__button--orange empty__add" bindtap="tapAdd">添加收货地址</view>
+    </view>
+    <view class="address" wx:if="{{list.length > 0}}">
+        <view class="address__list">
+            <view class="address__item {{source == 'order-confirm' ? 'address__item--noheight' : ''}}" bindtap="tapAddressItem" data-index="{{index}}" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="">
+                <view class="address__content">
+                    <view class="address__name">{{item.userName}} {{item.mobile}}</view>
+                    <view class="address__addr">{{item.provinceName}}{{item.cityName}}{{item.regionName}}{{item.detailAddress}}</view>
+                </view>
+                <view class="address__control" wx:if="{{source != 'order-confirm'}}">
+                    <view class="address__default" bindtap="tapDefault" data-index="{{index}}">
+                        <view class="address__defaultbtn">
+                            <template is="Right" data="{{checked: active === index}}"/>
+                        </view>
+                        <view class="address__defaulttext {{active === index ? 'address__defaulttext--active' : ''}}">设为默认地址</view>
+                    </view>
+                    <vie class="address__btns">
+                        <view class="address__btn" bindtap="tapEdit" data-index="{{index}}">
+                            <image class="address__icon address__icon--edit" mode="aspectFit" src="/static/address-list/edit.png"/>编辑
+                        </view>
+                        <view class="address__btn address__btn--del" bindtap="tapDel" data-index="{{index}}">
+                            <image class="address__icon address__icon--del`" mode="aspectFit" src="/static/address-list/del.png"/>删除
+                        </view>
+                    </vie>
+                </view>
+                <view class="address__choose" catchtap="tapAddressChoose" data-index="{{index}}"  wx:if="{{source == 'order-confirm'}}">
+                    <template is="Right" data="{{checked: active === index}}"/>
+                </view>
+            </view>
+        </view>
+        <view class="app__button--orange address__add" bindtap="tapAdd">添加收货地址</view>
+    </view>
+</block>

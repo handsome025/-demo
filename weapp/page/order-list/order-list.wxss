@@ -1,0 +1,163 @@
+.tabbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+}
+
+.tabbar__item {
+    width: 20%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.tabbar__name {
+    color: #333;
+    font-size: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.tabbar__name--active {
+    color: #ff6900;
+}
+
+.tabbar__active {
+    position: absolute;
+    left: -10px;
+    right: -10px;
+    bottom: 0;
+    border-bottom: 3px solid #ff6900;
+}
+
+.order {
+    padding-top: 40px;
+    overflow: hidden;
+}
+
+.order__item {
+    margin-top: 8px;
+    background: #fff;
+}
+
+.order__row {
+    display: flex;
+    padding: 0 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.order__header {
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order__title {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #333;
+}
+
+.order__status {
+    color: #ff6900;
+    font-size: 14px;
+}
+
+.order__content {
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 84px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order__goodsList {
+    display: flex;
+}
+
+.order__goodsbox {
+    /*border: 1px solid #ddd;*/
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.order__goods {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.order__info {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-size: 13px;
+}
+
+.order__arrow {
+    width: 7px;
+    height: 13px;
+    margin-left: 6px;
+}
+
+.order__footer {
+    padding-bottom: 12px;
+    flex-direction: column;
+}
+
+.order__pricebox {
+    font-size: 15px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #333;
+}
+
+.order__btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order__btn {
+    width: 80px;
+    height: 34px;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.order__btn--orange {
+    background: #ff6900;
+    color: #fff;
+}
+
+.order__btn--gray {
+    color: #666;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.order__price {
+    color: #ff6900;
+}
+
+.order__merchant {
+    width: 17px;
+    height: 17px;
+    margin-right: 8px;
+}

@@ -1,0 +1,65 @@
+<view class="sections" wx:if="{{visible}}">
+    <view class="section">
+        <view class="timebar">
+            <icon class="timebar__icon" type="waiting" color="#333" size="14"/>支付剩余时间 {{daojishi}}
+        </view>
+        <view class="detail">
+            <view class="detail__row">
+                <view class="detail__label">订单编号</view>
+                <view class="detail__value">{{orderCode}}</view>
+            </view>
+            <view class="detail__row">
+                <view class="detail__label">订单金额</view>
+                <view class="detail__value">¥{{amount}}</view>
+            </view>
+            <view class="detail__row">
+                <view class="detail__label">剩余应付</view>
+                <view class="detail__value detail__value--orange">¥{{paymentAmount}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="section">
+        <view class="payway payway--border" wx:if="{{canUseUCard}}"  bindtap="tapUCard">
+            <image mode="aspectFill" class="payway__icon" src="/static/order-pay/youdian.png"/>
+            <view class="payway__info">
+                <view class="payway__title">
+                    <view class="payway__name">悠点会员卡</view>
+                    <view class="payway__value">余额：{{yCardBalance}}元</view>
+                </view>
+                <view class="payway__detail">来伊份旗下会员卡快捷支付</view>
+            </view>
+            <view class="payway__arrowbox" wx:if="{{yCardBalance}}">
+                <view class="payway__action">使用</view>
+                <image mode="aspectFill" class="payway__arrow" src="/static/order-pay/arrow.png"/>
+            </view>
+        </view>
+        <view class="payway" wx:if="{{canUseECard}}" bindtap="tapECard">
+            <image mode="aspectFill" class="payway__icon" src="/static/order-pay/yidian.png"/>
+            <view class="payway__info">
+                <view class="payway__title">
+                    <view class="payway__name">伊点储值卡</view>
+                    <view class="payway__value">余额：{{eCardBalance}}元</view>
+                </view>
+                <view class="payway__detail">来伊份旗下储值卡快捷支付</view>
+            </view>
+            <view class="payway__arrowbox" wx:if="{{eCardBalance > 0}}">
+                <view class="payway__action">使用</view>
+                <image mode="aspectFill" class="payway__arrow" src="/static/order-pay/arrow.png"/>
+            </view>
+        </view>
+    </view>
+    <view class="section">
+        <view class="payway" bindtap="tapWeChat">
+            <image mode="aspectFill" class="payway__icon" src="/static/order-pay/wechat.png"/>
+            <view class="payway__info">
+                <view class="payway__title">
+                    <view class="payway__name">微信支付</view>
+                </view>
+                <view class="payway__detail">微信支付快捷支付</view>
+            </view>
+            <view class="payway__arrowbox">
+                <image mode="aspectFill" class="payway__arrow" src="/static/order-pay/arrow.png"/>
+            </view>
+        </view>
+    </view>
+</view>

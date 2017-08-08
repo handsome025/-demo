@@ -1,0 +1,23 @@
+<import src="../../component/GoodsPic/GoodsPic.wxml"/>
+<import src="../../component/Swiper/Swiper.wxml"/>
+<import src="../../component/OneProduct/OneProduct.wxml"/>
+<import src="../../component/MoreTip/MoreTip.wxml"/>
+
+<template is="Swiper" data="{{list: bannerList}}"/>
+
+<view class="category" wx:if="{{categoryList.length > 0}}">
+    <navigator class="category__item" wx:for="{{categoryList}}" wx:for-item="item" wx:for-index="index" url="/page/category/category?id={{item.id}}&name={{item.name}}&index={{index}}"  wx:key="">
+        <view class="category__icon">
+            <template is="GoodsPic" data="{{url: item.image}}"/>
+        </view>
+        <view class="category__name" wx:if="{{item.name}}">{{item.name}}</view>
+        <view class="category__name category__name--gray" wx:if="{{!item.name}}">一二三四</view>
+    </navigator>
+</view>
+
+<!-- <view class="activityTitle" wx:if="{{productList.length > 0}}">
+    <image class="activityTitle__icon" mode="aspectFill" src="/static/index/select.png" />精选·活动
+</view> -->
+<template is="OneProduct" data="{{list: productList}}"/>
+
+<template is="MoreTip" wx:if="{{productList.length > 0}}" data="{{has: hasMore}}"/>

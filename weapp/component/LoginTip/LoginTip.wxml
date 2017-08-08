@@ -1,0 +1,6 @@
+<template name="LoginTip">
+    <view class="LoginTip">
+        <image class="LoginTip__img" mode="aspectFit" src="/static/LoginTip/tip.png"/>
+        <view class="app__button--orange LoginTip__btn" bindtap="LoginTipTapLogin">登录吧，少年！</view>
+    </view>
+</template>

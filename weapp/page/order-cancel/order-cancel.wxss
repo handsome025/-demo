@@ -1,0 +1,49 @@
+.title {
+    padding-top: 8px;
+}
+
+.title__text {
+    font-size: 15px;
+    color: #333;
+    padding: 0 15px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+
+.list {
+    border-top: 1px solid #e0e0e0;
+    padding: 5px 15px;
+    overflow: hidden;
+    background: #fff;
+    color: #666;
+    font-size: 14px;
+}
+
+.list__icon {
+    margin-right: 10px;
+}
+
+.list__item {
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+.list__textarea {
+    background: #fafafa;
+    min-height: 100px;
+    padding: 10px;
+    line-height: 1.3;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.list__textarea--placeholder {
+    color: #bbb;
+}
+
+.btn {
+    padding: 15px 0;
+}

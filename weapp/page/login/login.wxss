@@ -1,0 +1,75 @@
+.login{
+	padding-top:15px;
+}
+.loginbox{
+	 border-top:1px solid #e7e7e7;
+	 background:#ffffff;
+}
+.section{
+	 display:flex;
+	 height:44px;
+	 border-bottom:1px solid #e7e7e7;
+	 margin-left:15px;
+}
+.usernamelabel{
+	 color:#000000;
+	 font-size:17px;
+	 width:92px;
+
+}
+.username,.captaure{
+  height:44px;
+  flex: 1;
+}
+.usernamelabel,
+.username {
+  display:flex;
+  align-items: center;
+}
+
+
+.sendcode{
+	 width:117px;
+	 height:44px;
+   border-left:1px solid #e7e7e7;
+   color:#ff6900;
+   font-size:16px;
+   display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginbt{
+	 margin-top:30px;
+}
+.registbtn,.noticetips{
+	font-size:16px;
+	color:#ff6100;
+	display:flex;
+	align-items: center;
+   justify-content: center;
+   height:43px;
+}
+.noticetips{
+	 color:#888888;
+}
+.notice{
+	 color:#ff6100;
+}
+.loginbt__btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+.checks{
+  display:flex;
+  align-items: center;
+ justify-content: center;
+ padding:0 75px;
+}
+.pwdbtn{
+	 flex:1;
+   color:#ff6900;
+}

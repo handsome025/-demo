@@ -1,0 +1,29 @@
+<view class="form">
+    <view class="form__box">
+        <view class="form__group">
+            <input type="text" class="form__input" placeholder-class="form__input--placeholder" bindinput="inputUserName" placeholder="收货人姓名" value="{{form.userName}}"/>
+        </view>
+        <view class="form__group">
+            <input type="text" class="form__input" placeholder-class="form__input--placeholder" bindinput="inputMobile" placeholder="手机号码" value="{{form.mobile}}"/>
+        </view>
+        <view class="form__group">
+            <picker class="form__picker" mode="multiSelector" bindchange="changeRegion" bindcolumnchange="changeRegionColumn" value="{{region}}" range="{{regionArray}}">
+                <view class="form__input" wx:if="{{regionSelected}}">{{regionArray[0][region[0]]}} {{regionArray[1][region[1]]}} {{regionArray[2][region[2]]}}</view>
+                <view class="form__input form__input--placeholder" wx:if="{{!regionSelected}}">所在地区</view>
+            </picker>
+            <image class="form__arrow" mode="aspectFit" src="/static/address-detail/arrow.png"/>
+        </view>
+        <view class="form__group">
+            <input type="text" class="form__input" placeholder-class="form__input--placeholder" bindinput="inputDetailAddress" placeholder="详细地址" value="{{form.detailAddress}}" maxlength="-1"/>
+        </view>
+        <view class="form__group">
+            <view class="form__input">
+                设为默认地址<view class="form__tip">注：每次下单时会使用该地址</view>
+            </view>
+            <view class="form__switchbox">
+                <switch checked="{{form.defaultIs}}" bindchange="changeDefaultIs" color="#ff6d00"/>
+            </view>
+        </view>
+    </view>
+    <view class="app__button--orange" bindtap="tapSave">保存</view>
+</view>

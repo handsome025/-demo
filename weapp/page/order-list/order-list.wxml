@@ -1,0 +1,53 @@
+<import src="../../component/GoodsPic/GoodsPic.wxml"/>
+<import src="../../component/MoreTip/MoreTip.wxml"/>
+
+<view class="tabbar">
+    <view class="tabbar__item"
+          wx:for="{{tabList}}"
+          wx:for-item="tab"
+          wx:for-index="index"
+          wx:key=""
+          data-index="{{index}}"
+          bindtap="tapTabItem">
+        <view class="tabbar__name {{tabActive == index ? 'tabbar__name--active' : ''}}">
+            <view>{{tab.name}}</view>
+            <view class="tabbar__active" wx:if="{{tabActive == index}}"></view>
+        </view>
+    </view>
+</view>
+
+<view class="order">
+    <view class="order__item" wx:for="{{orderList}}" wx:for-item="order" wx:for-index="index" wx:key="">
+        <view class="order__row order__header">
+            <view class="order__title" hidden="{{!order.merchantName}}">
+                <image class="order__merchant" mode="aspectFit" src="/static/order-list/merchant.png"/>{{order.merchantName}}
+            </view>
+            <view class="order__title" hidden="{{order.merchantName}}"></view>
+            <view class="order__status">{{order.orderStatusName}}</view>
+        </view>
+        <navigator class="order__row order__content" url="/page/order-detail/order-detail?id={{order.orderCode}}" hover-class="none">
+            <view class="order__goodsList">
+                <view class="order__goodsbox" wx:for="{{order.picUrls}}" wx:for-item="picUrl" wx:key="">
+                    <template is="GoodsPic" data="{{url: picUrl}}"/>
+                </view>
+            </view>
+            <view class="order__info">
+                共{{order.totalCount}}件商品 <image class="order__arrow" mode="aspectFit" src="/static/order-list/arrow.png"/>
+            </view>
+        </navigator>
+        <view class="order__row order__footer">
+            <view class="order__pricebox">
+                合计：<view class="order__price">¥{{order.amount}}</view>
+            </view>
+            <view class="order__btns">
+                <navigator url="/page/order-cancel/order-cancel?id={{order.orderCode}}" class="order__btn order__btn--gray" wx:if="{{order.canCancel}}">取消订单</navigator>
+                <view class="order__btn order__btn--gray" bindtap="tapDeleteOrder" data-index="{{index}}" data-id="{{order.orderCode}}" wx:if="{{order.canDelete}}">删除订单</view>
+                <navigator url="/page/order-pay/order-pay?id={{order.orderCode}}" class="order__btn order__btn--orange" wx:if="{{order.orderStatus == 1}}">去支付</navigator>
+                <navigator url="/page/logistics/logistics?id={{order.orderCode}}" class="order__btn order__btn--gray" wx:if="{{order.orderStatus == 3 || order.orderStatus == 4 || order.orderStatus == 8}}">查看物流</navigator>
+            </view>
+        </view>
+    </view>
+
+    <template is="MoreTip" wx:if="{{orderList.length == 0 && isGet}}" data="{{msg: '暂时没有相关订单哦'}}"/>
+    <template is="MoreTip" wx:if="{{orderList.length > 0}}" data="{{has: hasMore}}"/>
+</view>

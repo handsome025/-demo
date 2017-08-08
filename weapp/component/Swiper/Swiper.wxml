@@ -1,0 +1,19 @@
+<import src="../GoodsPic/GoodsPic.wxml"/>
+
+<template name="_Swiper">
+    <view class="Swiper__box" style="height: {{height}}">
+        <navigator wx:if="{{item.url}}" url="{{item.url}}">
+            <template is="GoodsPic" data="{{url: item.image}}"/>
+        </navigator>
+        <template wx:if="{{!item.url}}" is="GoodsPic" data="{{url: item.image}}"/>
+    </view>
+</template>
+
+<template name="Swiper">
+    <swiper class="Swiper" wx:if="{{list.length > 1}}" style="height: {{height}}" indicator-dots="{{list.length > 1}}" autoplay circular>
+        <swiper-item wx:for="{{list}}" wx:for-item="item" wx:key="">
+            <template is="_Swiper" data="{{item, height}}"/>
+        </swiper-item>
+    </swiper>
+    <template wx:if="{{list.length == 1}}" is="_Swiper" data="{{item: list[0], height}}"/>
+</template>

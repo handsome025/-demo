@@ -1,0 +1,46 @@
+<import src="../../component/GoodsPic/GoodsPic.wxml"/>
+<import src="../../component/MoreTip/MoreTip.wxml"/>
+
+<block wx:if="{{isGet}}">
+    <view class="info">
+        <view class="info__box">
+            <view class="info__imgbox">
+                <template is="GoodsPic" data="{{url: order.picUrl}}"/>
+                <view class="info__num">共{{order.mpCount}}件商品</view>
+            </view>
+            <view class="info__detail">
+                <view class="info__row">
+                    <view class="info__label">订单状态：</view>
+                    <view class="info__value info__value--orange">{{order.packageStatusName || '暂无'}}</view>
+                </view>
+                <view class="info__row">
+                    <view class="info__label">配送商：</view>
+                    <view class="info__value">{{order.distributors}}</view>
+                </view>
+                <view class="info__row">
+                    <view class="info__label">运单编号：</view>
+                    <view class="info__value">{{order.trackingNumber}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="list">
+        <view class="list__title">物流跟踪</view>
+        <view class="list__items">
+            <view class="list__item" wx:for="{{msgList}}" wx:for-item="msg" wx:for-index="index" wx:key="">
+                <view class="list__linebox">
+                    <view class="list__line" wx:if="{{index != msgList.length - 1}}"></view>
+                    <view class="list__dot" wx:if="{{index > 0 && index < msgList.length - 1}}"></view>
+                    <image class="list__cart" wx:if="{{index == msgList.length - 1}}" mode="aspectFill" src="/static/logistics/cart.png"/>
+                    <image class="list__right" wx:if="{{index == 0}}" mode="aspectFill" src="/static/logistics/right.png"/>
+                </view>
+                <view class="list__info">
+                    <view class="list__text {{index == 0 ? 'list__text--orange' : ''}}">{{msg.message}}</view>
+                    <view class="list__time">{{msg.createTime}}</view>
+                </view>
+            </view>
+            <template is="MoreTip" wx:if="{{msgList.length == 0 && isGet}}" data="{{msg: '暂无物流信息'}}"/>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,63 @@
+.TwoProduct {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px 8px;
+    overflow: hidden;
+}
+
+.TwoProduct__item {
+    width: 50%;
+    padding: 4px;
+}
+
+.TwoProduct__box {
+    padding: 8px;
+    background: #fff;
+}
+
+.TwoProduct__imgbox {
+    padding-top: 100%;
+    position: relative;
+}
+
+.TwoProduct__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.TwoProduct__name {
+    color: #333;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 15px 0 8px;
+}
+
+.TwoProduct__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.TwoProduct__shopcart {
+    width: 22px;
+    height: 19px;
+}
+
+.TwoProduct__pricebox {
+    display: flex;
+    align-items: baseline;
+}
+
+.TwoProduct__price {
+    color: #ff6900;
+    margin-right: 5px;
+}
+
+.TwoProduct__originPrice {
+    text-decoration: line-through;
+    color: #b2b2b2;
+    font-size: 10px;
+}

@@ -1,0 +1,12 @@
+@import "./base.wxss";
+@import "./component/Right/Right.wxss";
+@import "./component/GoodsPic/GoodsPic.wxss";
+@import "./component/LoginTip/LoginTip.wxss";
+@import "./component/MoreTip/MoreTip.wxss";
+@import "./component/OneProduct/OneProduct.wxss";
+@import "./component/Swiper/Swiper.wxss";
+@import "./component/TwoProduct/TwoProduct.wxss";
+@import "./component/Circle/Circle.wxss";
+@import "./component/NumberBox/NumberBox.wxss";
+
+

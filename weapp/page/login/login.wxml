@@ -1,0 +1,35 @@
+<view class="login">
+  <form bindsubmit="formSubmit">
+	  <view class="loginbox">
+	     <view class="section">
+	      <view class="usernamelabel">{{ usernamelabel }}</view>
+		  <input type="text" placeholder="{{ placeholder }}"  class="username" name="username"  value="{{ mobile }}"  bindinput="mobileInputEvent" />
+		</view>
+		<view class="section" wx:if="{{ loginstyle =='pwd' }}">
+	      <view class="usernamelabel">密码</view>
+		  <input type="password" placeholder="请输入密码"  class="username" name="password"  bindinput="pwdInputEvent" />
+		</view>
+		<view class="section" wx:if="{{ loginstyle !='pwd' }}"> 
+	      <view class="usernamelabel">验证码</view>
+	      <view class="username">
+			  <input type="text" placeholder="请输入验证码"  class="capture" name="capture"  value=""/>
+			  <view class="sendcode"  bindtap="verifyCodeEvent" size="mini" type="default" disabled="{{buttonDisable}}">{{verifyCodeTime}}</view>
+		  </view>
+		</view>  	  
+	  </view>
+	  	<view class="loginbt">
+			<view class="app__button--orange">
+				{{ btnname }}
+				<button class="loginbt__btn" form-type="submit"></button>
+			</view>
+			<view class="checks">
+			    <view class="pwdbtn" wx:if="{{ currentPage=='login' && loginstyle!='pwd' }}" bindtap="loginByPwd" data-style="pwd">密码登录</view>  
+			    <view class="pwdbtn" wx:if="{{ currentPage=='login' && loginstyle=='pwd' }}" bindtap="loginByPwd" data-style='mobile'>手机号登录</view>  
+				<view class="registbtn" wx:if="{{ currentPage=='login' }}" bindtap="toRegist">注册</view>  
+				<view class="registbtn" wx:if="{{ currentPage=='regist' }}" bindtap="loginByPwd" data-style='mobile'>已有账号直接登录</view> 
+			</view>
+		   
+		  <!--  <view class="noticetips" wx:if="{{ currentPage=='regist' }}">注册则代表同意<view class="notice">来伊份用户协议</view></view>   -->
+		</view>
+</form>	 
+</view>

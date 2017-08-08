@@ -1,0 +1,6 @@
+<template name="Right">
+    <view class="Right">
+        <view class="Right__icon" wx:if="{{!checked}}"></view>
+        <image class="Right__icon Right__icon--orange" wx:if="{{checked}}" mode="aspectFill" src="/static/Right/right.png"/>
+    </view>
+</template>

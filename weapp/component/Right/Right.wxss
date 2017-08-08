@@ -1,0 +1,12 @@
+.Right__icon {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.Right__icon--orange {
+    border: 0;
+    background: none;
+}

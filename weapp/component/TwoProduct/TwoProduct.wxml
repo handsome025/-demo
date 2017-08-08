@@ -1,0 +1,21 @@
+<import src="../GoodsPic/GoodsPic.wxml"/>
+
+<template name="TwoProduct">
+    <view class="TwoProduct" wx:if="{{list.length > 0}}">
+        <view class="TwoProduct__item" wx:for="{{list}}" wx:for-item="item" wx:key="">
+            <view class="TwoProduct__box">
+                <navigator class="TwoProduct__imgbox" url="/page/product/product?id={{item.id}}">
+                    <template is="GoodsPic" data="{{url: item.image, abs: true}}"/>
+                </navigator>
+                <view class="TwoProduct__name" bindtap="TwoProductTapShopcart" data-id="{{item.id}}">{{item.name}}</view>
+                <view class="TwoProduct__bar" bindtap="TwoProductTapShopcart" data-id="{{item.id}}">
+                    <view class="TwoProduct__pricebox">
+                        <view class="TwoProduct__price">¥{{item.price}}</view>
+                        <!--<view class="TwoProduct__originPrice">¥{{item.originPrice}}</view>-->
+                    </view>
+                    <image class="TwoProduct__shopcart" mode="aspectFit" src="/static/shopcart.png"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

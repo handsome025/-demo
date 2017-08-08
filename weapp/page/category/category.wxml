@@ -1,0 +1,8 @@
+<import src="../../component/TwoProduct/TwoProduct.wxml"/>
+<import src="../../component/MoreTip/MoreTip.wxml"/>
+<import src="../../component/Swiper/Swiper.wxml"/>
+
+<template is="Swiper" data="{{list: bannerList}}"/>
+<template is="TwoProduct" data="{{list: productList}}"/>
+<template is="MoreTip" wx:if="{{productList.length == 0 && isGet}}" data="{{msg: '暂时没有相关商品哦'}}"/>
+<template is="MoreTip" wx:if="{{productList.length > 0}}" data="{{has: hasMore}}"/>

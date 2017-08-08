@@ -1,0 +1,10 @@
+.Swiper,
+.Swiper__box {
+    height: 300rpx;
+}
+
+.Swiper__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

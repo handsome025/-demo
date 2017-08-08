@@ -1,0 +1,4 @@
+<template name="MoreTip">
+    <view class="MoreTip" wx:if="{{!msg}}">{{has ? '正在加载...' : '没有更多了哦'}}</view>
+    <view class="MoreTip" wx:if="{{msg}}">{{msg}}</view>
+</template>

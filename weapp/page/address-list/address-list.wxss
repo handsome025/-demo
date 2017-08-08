@@ -1,0 +1,138 @@
+.empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.empty__img {
+    width: 142px;
+    height: 129px;
+}
+
+.empty__text {
+    padding: 18px 0;
+    color: #666;
+}
+
+.empty__add {
+    width: 150px;
+}
+
+.address {
+    padding-bottom: 52px; /* 44 + 8 */
+}
+
+.address__list {
+    overflow: hidden;
+}
+
+.address__item {
+    position: relative;
+    background: #fff;
+    height: 125px;
+    margin-top: 8px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.address__item--noheight {
+    height: auto;
+    padding-right: 60px;
+}
+
+.address__choose {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.address__add {
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+    margin: 0;
+}
+
+.address__content {
+    height: 80px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.address__control {
+    border-top: 1px solid #e5e5e5;
+    height: 45px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #333;
+}
+
+.address__btns {
+    display: flex;
+    height: 100%;
+}
+
+.address__default {
+    display: flex;
+    align-items: center;
+    height:100%;
+}
+
+.address__btn {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
+
+.address__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.address__defaulttext--active {
+    color: #ff6900;
+}
+
+.address__defaultbtn {
+    margin-right: 8px;
+}
+
+.address__defaultbtn--active {
+    border: 0;
+    background: none;
+}
+
+.address__name {
+    padding: 15px 0 8px;
+    color: #333;
+    font-size: 15px;
+}
+
+.address__addr {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.3;
+    height: 32px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}

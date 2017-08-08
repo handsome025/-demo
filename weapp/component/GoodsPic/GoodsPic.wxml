@@ -1,0 +1,6 @@
+<template name="GoodsPic">
+    <view class="GoodsPic {{abs ? 'GoodsPic--abs' : ''}}">
+        <image class="GoodsPic__img" mode="aspectFit" src="/static/preload.png"/>
+        <image class="GoodsPic__img" mode="aspectFill" src="{{url}}"/>
+    </view>
+</template>

@@ -1,0 +1,53 @@
+.category {
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.category__item {
+    width: 20%;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.category__icon {
+    width: 57px;
+    height: 57px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+.category__name {
+    width:57px;
+    color: #a9a9a9;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align:center;
+}
+
+.category__name--gray {
+    color: #f0f0f0;
+    background: #f0f0f0;
+}
+
+.activityTitle{
+     height:35px;
+     display:flex;
+     font-size:14px;
+     color:#333333;
+     align-items: center;
+    justify-content: center;
+    background:#ffffff;
+    border-bottom:1px solid #f4f4f4;
+
+}
+.activityTitle__icon{
+     width:18px;
+     height:18px;
+     margin-right:5px;
+}

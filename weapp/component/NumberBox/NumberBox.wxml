@@ -1,0 +1,13 @@
+<template name="NumberBox">
+    <view class="NumberBox">
+        <view class="NumberBox__group">
+            <view class="NumberBox__btn NumberBox__btn--left" bindtap="NumberBoxTapLeft" data-key="{{key}}">
+                <image class="NumberBox__icon" mode="aspectFit" src="/static/NumberBox/left{{leftDisabled ? '--dis' : ''}}.png"/>
+            </view>
+            <view class="NumberBox__text">{{value}}</view>
+            <view class="NumberBox__btn NumberBox__btn--right" bindtap="NumberBoxTapRight" data-key="{{key}}">
+                <image class="NumberBox__icon" mode="aspectFit" src="/static/NumberBox/right{{rightDisabled ? '--dis' : ''}}.png"/>
+            </view>
+        </view>
+    </view>
+</template>

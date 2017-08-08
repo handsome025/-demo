@@ -1,0 +1,23 @@
+<import src="../GoodsPic/GoodsPic.wxml"/>
+
+<template name="OneProduct">
+    <view class="OneProduct" wx:if="{{ list.length >0 }}">
+      <view class="OneProduct__item {{index == list.length - 1 ? 'OneProduct__item--last' : ''}}" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="">
+        <navigator class="OneProduct__link"  url="/page/product/product?id={{item.id}}" hover-class="none">
+            <view class="OneProduct__imgbox">
+                <template is="GoodsPic" data="{{url: item.image}}"/>
+            </view>
+            <view class="OneProduct__detail">
+                <view class="OneProduct__detailName">{{ item.name }}</view>
+                <!--<view class="OneProduct__originalPrice">¥{{ item.originPrice }}</view>-->
+                <view class="OneProduct__detailbt">
+                    <view class="OneProduct__detailPrice">￥{{ item.price }}</view>
+                    <view class="OneProduct__shopcartLink" catchtap="OneProductTapShopCart" data-id="{{ item.id }}">
+                        <image mode="aspectFit"  class="OneProduct__shopcart" src="/static/shopcart.png"/>
+                    </view>      
+                </view>
+            </view>
+        </navigator>
+      </view>
+    </view>
+</template>

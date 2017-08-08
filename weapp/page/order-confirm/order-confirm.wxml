@@ -1,0 +1,128 @@
+<import src="../../component/GoodsPic/GoodsPic.wxml"/>
+<import src="../../component/Right/Right.wxml"/>
+
+<block wx:if="{{visible}}">
+    <view class="address" bindtap="goAddressList">
+        <view class="address__content">
+            <view class="address__iconbox">
+                <image class="address__icon" mode="aspectFill" src="/static/order-detail/address__icon.png"/>
+            </view>
+            <view class="address__detail" wx:if="{{receiver}}">
+                <view class="address__name">{{receiver.name}} {{receiver.mobile}}</view>
+                <view class="address__addr">
+                    <view class="address__default" wx:if="{{receiver.isDefault}}">[默认地址]</view>
+                    {{receiver.provinceName}}{{receiver.cityName}}{{receiver.areaName}}{{receiver.detailAddress}}
+                </view>
+            </view>
+            <view class="address__detail" wx:if="{{!receiver}}">
+                <view class="address__name">您还没有可用的收货地址，赶快添加吧！</view>
+            </view>
+            <image class="address__arrow" mode="aspectFit" src="/static/order-confirm/arrow.png"/>
+        </view>
+        <image class="address__line" mode="aspectFill" src="/static/order-detail/address.png"/>
+    </view>
+
+<!--    <view class="payType">
+        <view>支付方式</view>
+        <view>在线支付</view>
+    </view>-->
+
+    <view class="goods" wx:for="{{merchantList}}" wx:for-item="merchant" wx:for-index="merchantIndex" wx:key="">
+        <view class="goods__header">
+            <image class="goods__merchant" mode="aspectFit" src="/static/order-detail/merchant.png"/>{{merchant.merchantName}}
+        </view>
+        <view class="goods__list">
+            <view class="goods__item" wx:for="{{merchant.productList}}" wx:for-item="product" wx:key="">
+                <view class="goods__img">
+                    <template is="GoodsPic" data="{{url: product.picUrl}}"/>
+                </view>
+                <view class="goods__detail">
+                    <view class="goods__name">{{product.name}}</view>
+                    <view class="goods__info">
+                        <view class="goods__price">¥{{product.price}}</view>
+                        <view class="goods__num">x{{product.num}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="goods__other">
+            <view class="goods__other-name">配送信息</view>
+            <view class="goods__other-value">
+                <picker bindchange="changeDeliveryMode" data-index="{{merchantIndex}}" class="goods__picker" value="{{merchantDeliveryModeList[merchantIndex].activeIndex}}" range="{{merchantDeliveryModeList[merchantIndex].deliveryModeList}}" range-key="name">
+                    <view class="section__labelsub2">{{merchantDeliveryModeList[merchantIndex].deliveryModeList[merchantDeliveryModeList[merchantIndex].activeIndex].name}}</view>
+                    <image class="goods__arrow" mode="aspectFit" src="/static/order-confirm/arrow.png"/>
+                </picker>
+            </view>
+        </view>
+        <view class="goods__other">
+            <view class="goods__other-name">买家留言</view>
+            <view class="goods__other-value">
+                <input type="text" bindblur="blurRemark" data-index="{{merchantIndex}}" class="goods__other-input" placeholder-class="goods__other-input--placeholder" placeholder="选填，给商家留言 (60字以内)" maxlength="60"/>
+            </view>
+        </view>
+        <view class="goods__other">
+            <view class="goods__other-value">
+                共 <view class="goods__other-orange">{{merchant.totalNum}}</view>件 合计：<view class="goods__other-orange">¥{{merchant.amount}}</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="section">
+        <view class="section__item">
+            <view class="section__label">
+                优惠券<view class="section__labelsub" wx:if="{{coupons.length - 1 > 0}}">{{coupons.length - 1}}张可用</view>
+            </view>
+            <view class="section__value">
+                <picker bindchange="changeCoupon" class="goods__picker" wx:if="{{coupons.length - 1 > 0}}" value="{{allCoupon.activeIndex}}" range="{{allCoupon.orderCoupons}}" range-key="pickName">
+                    <view class="section__value" wx:if="{{coupons[allCoupon.activeIndex].couponValue == 0}}">不使用</view>
+                    <view class="section__value section__value--orange" wx:if="{{coupons[allCoupon.activeIndex].couponValue > 0}}">-¥{{coupons[allCoupon.activeIndex].couponValue}}</view>
+                    <image class="goods__arrow" mode="aspectFit" src="/static/order-confirm/arrow.png"/>
+                </picker>
+                <view class="section__labelsub2" wx:if="{{coupons.length - 1 <= 0}}">无可用</view>
+            </view>
+        </view>
+        <view class="section__item" bindtap="tapPoints">
+            <view class="section__label">
+                积分<view class="section__labelsub2" wx:if="{{points.isAvailable}}">可用{{points.canUseCount}}积分抵扣{{points.discount}}元</view>
+            </view>
+            <view class="section__value">
+                <template is="Right" wx:if="{{points.isAvailable}}" data="{{checked: points.selected}}"/>
+                <view class="section__labelsub2" wx:if="{{!points.isAvailable}}">无可用</view>
+            </view>
+        </view>
+        <view class="section__item" bindtap="tapUCard">
+            <view class="section__label">
+                <view class="section__tuijian">推荐</view>悠点卡<view class="section__labelsub2" wx:if="{{orderUCard.isAvailable}}">可用悠点卡抵扣{{orderUCard.availableAmount}}元</view>
+            </view>
+            <view class="section__value">
+                <template is="Right" wx:if="{{orderUCard.isAvailable}}" data="{{checked: orderUCard.selected}}"/>
+                <view class="section__labelsub2" wx:if="{{!orderUCard.isAvailable}}">无可用</view>
+            </view>
+        </view>
+        <view class="section__item" bindtap="tapECard">
+            <view class="section__label">
+                <view class="section__tuijian">推荐</view>伊点卡<view class="section__labelsub2" wx:if="{{orderECard.isAvailable}}">可用伊点卡抵扣{{orderECard.availableAmount}}元</view>
+            </view>
+            <view class="section__value">
+                <template is="Right" wx:if="{{orderECard.isAvailable}}" data="{{checked: orderECard.selected}}"/>
+                <view class="section__labelsub2" wx:if="{{!orderECard.isAvailable}}">无可用</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="section">
+        <view class="section__item {{expenseIndex == expenseList.length - 1 ? 'section__item--noborder' : ''}}" wx:for="{{expenseList}}" wx:for-item="expense" wx:for-index="expenseIndex" wx:key="">
+            <view class="section__label">
+                <image wx:if="{{expense.iconUrl}}" class="section__icon" src="{{expense.iconUrl}}"/>
+                {{expense.label}}
+            </view>
+            <view class="section__value {{expense.operator == '-' ? 'section__value--orange' : ''}}">{{expense.operator == '-' ? '-' : ''}}¥{{expense.value}}</view>
+        </view>
+    </view>
+
+    <view class="footerHeight"></view>
+    <view class="footer">
+        <view class="footer__amount">合计：¥{{amount}}</view>
+        <view class="footer__btn" bindtap="submitOrder">提交订单</view>
+    </view>
+</block>

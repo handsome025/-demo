@@ -1,0 +1,60 @@
+<import src="../../component/GoodsPic/GoodsPic.wxml"/>
+<import src="../../component/Swiper/Swiper.wxml"/>
+<import src="../../component/Circle/Circle.wxml"/>
+
+
+<view class="ui-tab">
+   <view class="ui-tab__nav">
+       <view class="ui-tab__con">
+		   <view class="nav" bindtap="switchTab" data-index="1">
+			   商品<view wx:if="{{tab == 1}}" class="nav__border"></view>
+		   </view>
+		   <view class="nav" bindtap="switchTab" data-index="2">
+			   详情<view wx:if="{{tab == 2}}" class="nav__border"></view>
+		   </view>
+	   </view>
+   </view>
+</view>
+
+<view class="section" wx:if="{{ tab==1 }}">
+	<view class="banner">
+	  <template is="Swiper" data="{{ list: pics,height:'750rpx'}}"/>
+	</view>
+	<view class="product">
+	   <view class="product__name">{{ baseInfo.name }}</view>
+	   <view class="product__title">{{ baseInfo.subTitle }}</view>
+	   <view class="product__price">￥{{ baseInfo.price}}</view>
+	   <view class="product__saleamount">
+	   	   <view class="product__salesVolume">已售{{ baseInfo.volume4sale}}笔</view>
+	   	   <view class="product__salesVolume">库存：{{ baseInfo.stockNum }}</view>
+	   </view>
+	</view>
+<!-- 	<view class="address">
+	  <view class="address__info">
+	  	  
+	  </view>
+		 
+	</view> -->
+</view>
+<view class="section" wx:if="{{ tab==2 }}">
+	<image wx:for="{{desc}}" wx:for-item="d" wx:key="" class="desc" mode="widthFix" src="{{d}}"/>
+</view>
+<!-- <template is="Footer" data="{{...footer}}"/>  -->
+
+
+<view class="footer" >
+ <view class="footer__nav">
+   <view class="footer__goshopcart">
+     <navigator open-type="switchTab" hover-class="none" class="footer__goshopcartlink" url="/page/shopcart/shopcart">
+       <view class="footer__icon">
+          <image src="/static/shopcart.png" mode="aspectFit"  />
+           <!--<template is="Circle"  data="{{ number: footer.number, type: 'solid', right:'-10px',top:'-6px' }}"/>-->
+       </view>
+   	   <view class="footer__text">购物车</view>
+   	  </navigator>
+   </view>
+   <view class="footer__addshopcart" bindtap="addToCart" data-id="{{ footer.id }}" data-key="{{ footer.key }}" data-number="{{ footer.number }}">加入购物车</view>   
+</view>
+</view>
+
+

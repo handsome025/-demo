@@ -1,0 +1,82 @@
+<import src="../../component/MoreTip/MoreTip.wxml"/>
+
+<view class="coupon">
+   <form bindsubmit="formSubmit" class="form">
+    <view class="section">
+	     <view class="quannumberbox">
+	       <view class="quanlabel">券号</view>
+		   <input type="text" placeholder="请输入券号"  class="quannumber" name="quannumber" value="{{quannumber}}"  />
+		 </view>
+		 <view class="quannumberbox bt">
+	       <view class="quanlabel">密码</view>
+		   <input type="text" placeholder="请输入密码"  class="quannumber" name="password" value="{{password}}"  />
+		 </view>
+	 </view>
+	 <view class="addbtn">
+	 	 <view class="app__button--orange">
+				添加
+				<button class="add__btn" form-type="submit"></button>
+		 </view>
+	 </view>
+   </form>
+   <view class="switchtab">
+       <view class="tab" bindtap="swicthTab" data-index="1" data-coupon-status="1">
+         <view class="nouse">
+          未使用
+          <view class="nav__border" wx:if="{{tab == 1}}" ></view>
+         </view>
+       </view>
+       <view class="tab" bindtap="swicthTab" data-index="2" data-coupon-status="2">
+         <view class="used">
+         已使用
+         <view class="nav__border" wx:if="{{tab == 2}}" ></view>
+         </view>
+       </view>
+       <view class="tab " bindtap="swicthTab" data-index="3" data-coupon-status="4">
+          <view class="donated">
+          已赠送
+          <view class="nav__border" wx:if="{{tab == 3}}" ></view>
+          </view>
+       </view>
+       <view class="tab" bindtap="swicthTab" data-index="4" data-coupon-status="3">
+         <view class="expired">
+         已过期
+         <view class="nav__border" wx:if="{{tab == 4}}" ></view>
+         </view>
+       </view> 
+   </view>
+   <view class="nouse__coupon" wx:if="{{ tab==1 }}">
+   	  <view class="coupon__item" wx:for="{{ couponList.list }}" wx:for-item="item" wx:key="">
+   	      <view class="coupon__bg"><image src="/static/coupon/bg.png" /></view>
+   	      <view class="coupon__btn">线上券</view>
+   	      <view class="coupon__info">
+   	         <view class="coupon__value">￥<view class="coupon__price">{{ item.couponValue }}</view></view>
+   	         <view class="coupon__detail">
+   	         	 <view class="coupon__name">{{ item.themeTitle }}</view>
+   	         	 <view class="coupon__expired">有效期：{{ item.endTime }}</view>
+   	         </view>
+   	      </view> 
+         <view class="coupon__useful">{{ item.themeDesc || '' }}</view>
+   	  </view>
+	   <template is="MoreTip" wx:if="{{couponList.list.length == 0}}" data="{{msg: '暂无数据'}}"/>
+   </view>
+
+   <view class="nouse__coupon" wx:if="{{ tab==2  || tab==3  || tab==4 }}">
+   	 <view class="coupon__item gray" wx:for="{{ couponList.list }}" wx:for-item="item" wx:key="">
+   	      <view class="coupon__bg"><image src="/static/coupon/bg.png" /></view>
+   	      <view class="coupon__btn">线上券</view>
+   	      <view class="coupon__info">
+   	         <view class="coupon__value">￥<view class="coupon__price">{{ item.couponValue }}</view></view>
+   	         <view class="coupon__detail">
+   	         	 <view class="coupon__name">{{ item.themeTitle }}</view>
+   	         	 <view class="coupon__expired">有效期：{{ item.endTime }}</view>
+   	         </view> 
+   	      </view> 
+   	       <view class="coupon__useful">{{ item.themeDesc || '' }}</view>
+   	  </view>
+	   <template is="MoreTip" wx:if="{{couponList.list.length == 0}}" data="{{msg: '暂无数据'}}"/>
+   </view>
+</view>
+
+
+

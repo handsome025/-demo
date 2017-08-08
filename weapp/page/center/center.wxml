@@ -1,0 +1,70 @@
+<import src="../../component/LoginTip/LoginTip.wxml"/>
+<import src="../../component/Circle/Circle.wxml"/>
+   
+
+<template is="LoginTip" wx:if="{{loginStatus === 0}}"/>
+
+<block wx:if="{{loginStatus === 1}}">
+    <view class="header">
+        <image src="/static/center/headerbg.png"  mode="aspectFill" />
+        <view class="userInfo">
+	           <view class="userInfo__vipdegree">
+	           	   <view class="userInfo__vipdegreeIcon">{{ userLevlName || '--' }}</view>
+	           	   <view class="userInfo__vipdegreeText">会员等级</view>
+	           </view>
+	           <view class="userInfo__detail">
+		           <view class="userInfo__headimg">
+		              <image src="/static/center/headimg.png"  mode="aspectFill" class="userInfo__headimgIcon"/>
+		              <image src="{{userInfo.headPicUrl}}"  mode="aspectFill" class="userInfo__headimgIcon"/>
+		           </view>
+		           <view class="userInfo__detailNickname">{{userInfo.nickname}}</view>
+	           </view> 
+	           <view class="userInfo__vipdegree">
+	              <view class="userInfo__vipdegreeIcon">{{ yBean === '' ? '--' : yBean }}</view>
+	           	   <view class="userInfo__vipdegreeText">伊豆</view>
+	           </view>  
+        </view>
+    </view>
+    <view class="order">
+    	 <navigator class="order__my" url="/page/order-list/order-list" hover-class="none">
+    	    <view class="order__myText">
+    	      <image src="/static/center/order.png"  mode="aspectFill" class="order__myIcon"/>我的订单
+    	    </view>
+    	    <view class="order__myAllOrder">
+    	    	全部订单 <image class="order__arrow" mode="aspectFit" src="/static/center/arrow.png"/>
+    	    </view>
+    	 </navigator>
+    	<view class="orderstep">
+              <view class="order__step" wx:for="{{ orderState  }}" wx:for-item="item" wx:key="">
+                <navigator  url="/page/order-list/order-list?index={{ item.status }}" hover-class="none">
+        	          <view class="order__stepicon">
+        	             <view class="order__steppayment">
+    	    	          	  <image class="order__steppayment" mode="aspectFit" src="{{ item.imgurl }}"/>
+    	    	          	  <template is="Circle"  data="{{ number: item.number, type: 'solid', right:'-8px',top:'-10px' }}"/>
+    	    	         </view>
+        	          </view>
+          	   	   <view class="order__stepName">{{ item.name }}</view>	 
+                </navigator>     
+               </view>
+    	       	 
+       </view>
+    </view>
+    <view class="order">
+    	<view class="order__my" hover-class="none">
+    	    <view class="order__myText">
+    	      <image src="/static/center/purse.png" mode="aspectFill" class="order__myIcon"/>我的钱包
+    	    </view>
+    	  <!--   <view class="order__myAllOrder">
+    	      查看全部 <image class="order__arrow" mode="aspectFit" src="/static/center/arrow.png"/>
+    	    </view>	  -->
+      </view>
+      <view class="purse__catagory">
+      	   <view class="purse__catagorylei" wx:for="{{ walletInfo }}" wx:for-item="item" wx:key="" bindtap="jumpUrl" data-type="{{ item.type }}">
+      	   	   <view class="purse__catagoryNumber">{{ item.number }}</view>
+      	   	   <view class="purse__catagoryName">{{ item.name }}</view>
+      	   </view>
+
+      </view>
+    </view>
+</block>
+

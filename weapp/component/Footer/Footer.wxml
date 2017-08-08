@@ -1,0 +1,13 @@
+<template name="Footer">
+    <view class="Footer" >
+     <view class="Footer__nav">
+       <view class="Footer__goshopcart">
+         <navigator  open-type="switchTab" url="/page/shopcart/shopcart">
+           <view class="Footer__icon"><image src="/static/shopcart.png" mode="aspectFit"  /></view>
+       	   <view class="Footer__text">购物车</view>
+       	  </navigator>
+       </view>
+       <view class="Footer__addshopcart" bindtap="addToCart" data-id="{{ id }}">加入购物车</view>   
+    </view>
+    </view>
+</template>

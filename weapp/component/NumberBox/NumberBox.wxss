@@ -1,0 +1,49 @@
+.NumberBox {
+    height: 30px;
+    width: 120px;
+    overflow: hidden;
+}
+
+.NumberBox__group {
+    position: relative;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NumberBox__btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0;
+    text-align: center;
+    background-color: #fff;
+    line-height: 30px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NumberBox__text {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.NumberBox__btn--left {
+    border-right: 1px solid #ddd;
+}
+
+.NumberBox__btn--right {
+    border-left: 1px solid #ddd;
+}
+
+.NumberBox__icon {
+    width: 14px;
+    height: 14px;
+}

@@ -1,0 +1,116 @@
+<import src="../../component/GoodsPic/GoodsPic.wxml"/>
+
+<block wx:if="{{visible}}">
+    <view class="header">
+        <image mode="aspectFill" src="/static/order-detail/header.png"/>
+        <view class="header__title">{{orderStatusName}}</view>
+        <view class="header__content" wx:if="{{orderStatus == 1}}">您的订单已提交，请在{{daojishi}}完成支付，超时订单自动取消</view>
+        <view class="header__content" wx:if="{{orderStatus == 2}}">您的订单已付款，等待卖家发货</view>
+        <view class="header__content" wx:if="{{orderStatus == 3}}">订单已发出，等待买家收货，30天自动确认收货</view>
+        <view class="header__content" wx:if="{{orderStatus == 8}}">订单交易成功，感谢您的购买</view>
+        <view class="header__content" wx:if="{{orderStatus == 10 && orderCanceOperateTypeContext}}">取消原因：{{orderCanceOperateTypeContext}}</view>
+    </view>
+
+    <view class="address">
+        <view class="address__content">
+            <view class="address__iconbox">
+                <image class="address__icon" mode="aspectFill" src="/static/order-detail/address__icon.png"/>
+            </view>
+            <view class="address__detail">
+                <view class="address__name">{{receiver.receiverName}} {{receiver.receiverMobile}}</view>
+                <view class="address__addr">{{receiver.provinceName}}{{receiver.cityName}}{{receiver.areaName}}{{receiver.detailAddress}}</view>
+            </view>
+        </view>
+        <image class="address__line" mode="aspectFill" src="/static/order-detail/address.png"/>
+    </view>
+
+    <view class="goods" wx:for="{{childOrderList}}" wx:for-item="order" wx:key="">
+        <view class="goods__header" wx:if="{{merchantName}}">
+            <image class="goods__merchant" mode="aspectFit" src="/static/order-detail/merchant.png"/>{{merchantName}}
+        </view>
+        <view class="goods__list">
+            <view class="goods__item" wx:for="{{order.packageList[0].productList}}" wx:for-item="product" wx:key="">
+                <view class="goods__img">
+                    <template is="GoodsPic" data="{{url: product.picUrl}}"/>
+                </view>
+                <view class="goods__detail">
+                    <view class="goods__name">{{product.name}}</view>
+                    <view class="goods__info">
+                        <view class="goods__price">¥{{product.price}}</view>
+                        <view class="goods__num">x{{product.num}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="goods__footer">
+            <view class="goods__footLabel">配送信息</view>
+            <view>
+                <view class="goods__footValue">{{order.deliveryModeName}}</view>
+                <view class="goods__footValue goods__footValue--last">运费：¥{{order.orderDeliveryFeeAccounting}}</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="payType">
+        <view>支付方式</view>
+        <view>{{payMethod}}</view>
+    </view>
+
+    <view class="detail">
+        <view class="detail__row">
+            <view>商品总价</view>
+            <view>¥{{productAmount}}</view>
+        </view>
+        <view class="detail__row">
+            <view>运费</view>
+            <view>¥{{orderDeliveryFeeAccounting}}</view>
+        </view>
+        <view class="detail__row " wx:if="{{orderPaidByUcard > 0}}">
+            <div class="detail__zibox">
+                <view class="detail__zi detail__zi--di">抵</view>悠点卡
+            </div>
+            <div class="detail__value--orange">-¥{{orderPaidByUcard}}</div>
+        </view>
+        <view class="detail__row" wx:if="{{orderPaidByCard > 0}}">
+            <view class="detail__zibox">
+                <view class="detail__zi detail__zi--di">抵</view>伊点卡
+            </view>
+            <view class="detail__value--orange">-¥{{orderPaidByCard}}</view>
+        </view>
+        <view class="detail__row" wx:if="{{orderPaidByCoupon > 0}}">
+            <view class="detail__zibox">
+                <view class="detail__zi detail__zi--jian">减</view>优惠券
+            </view>
+            <view class="detail__value--orange">-¥{{orderPaidByCoupon}}</view>
+        </view>
+        <view class="detail__row" wx:if="{{promotionAmount > 0}}">
+            <view class="detail__zibox">
+                <view class="detail__zi detail__zi--jian">惠</view>促销优惠
+            </view>
+            <view class="detail__value--orange">-¥{{promotionAmount}}</view>
+        </view>
+        <view class="detail__row detail__row--last">
+            <view>应付款（含运费）</view>
+            <view class="detail__value--orange">¥{{paymentAmount}}</view>
+        </view>
+    </view>
+
+    <view class="time">
+        <view class="time__row">订单编号：{{orderCode}}</view>
+        <view class="time__row" wx:if="{{parentOrderCode}}">父单编号：{{parentOrderCode}}</view>
+        <view class="time__row">创建时间：{{orderCreateTimeStr}}</view>
+        <view class="time__row" wx:if="{{paymentTimeStr}}">付款时间：{{paymentTimeStr}}</view>
+        <view class="time__row" wx:if="{{shipTimeStr}}">发货时间：{{shipTimeStr}}</view>
+        <view class="time__row" wx:if="{{receiveTimeStr}}">成交时间：{{receiveTimeStr}}</view>
+    </view>
+
+    <block wx:if="{{canCancel || canDelete || orderStatus == 1 || orderStatus == 3 || orderStatus == 4 || orderStatus == 8}}">
+        <view class="footerHeight"></view>
+        <view class="footer">
+            <navigator url="/page/order-cancel/order-cancel?id={{orderCode}}" class="footer__btn footer__btn--gray" wx:if="{{canCancel}}">取消订单</navigator>
+            <view class="footer__btn footer__btn--gray" bindtap="tapDeleteOrder" data-id="{{orderCode}}" wx:if="{{canDelete}}">删除订单</view>
+            <navigator url="/page/order-pay/order-pay?id={{orderCode}}" class="footer__btn footer__btn--orange" wx:if="{{orderStatus == 1}}">去支付</navigator>
+            <navigator url="/page/logistics/logistics?id={{orderCode}}" class="footer__btn footer__btn--gray" wx:if="{{orderStatus == 3 || orderStatus == 4 || orderStatus == 8}}">查看物流</navigator>
+        </view>
+    </block>
+</block>

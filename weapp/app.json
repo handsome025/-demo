@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "page/index/index",
+    "page/address-list/address-list",
+    "page/address-detail/address-detail",
+    "page/shopcart/shopcart",
+    "page/center/center",
+    "page/login/login",
+    "page/product/product",
+    "page/category/category",
+    "page/order-list/order-list",
+    "page/order-detail/order-detail",
+    "page/order-pay/order-pay",
+    "page/order-confirm/order-confirm",
+    "page/logistics/logistics",
+    "page/order-cancel/order-cancel",
+    "page/coupon/coupon"
+  ],
+  "networkTimeout": {
+    "request": 10000
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#f4f4f4",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "来伊份APP官方商城",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {       
+    "color": "#666",
+    "selectedColor": "#ff6900",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "page/index/index",
+        "text": "首页",
+        "iconPath": "static/tabBar/home.png",
+        "selectedIconPath": "static/tabBar/home--active.png"
+      },
+      {
+        "pagePath": "page/shopcart/shopcart",
+        "text": "购物车",
+        "iconPath": "static/tabBar/shopcart.png",
+        "selectedIconPath": "static/tabBar/shopcart--active.png"
+      },
+      {
+        "pagePath": "page/center/center",
+        "text": "我的",
+        "iconPath": "static/tabBar/center.png",
+        "selectedIconPath": "static/tabBar/center--active.png"
+      }
+    ]
+  },
+  "debug": true
+}

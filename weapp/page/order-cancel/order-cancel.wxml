@@ -1,0 +1,19 @@
+<import src="../../component/Right/Right.wxml"/>
+
+<view class="title">
+    <view class="title__text">请选择取消原因</view>
+</view>
+
+<view class="list">
+    <view class="list__item" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="" bindtap="tapListItem" data-index="{{index}}">
+        <view class="list__icon">
+            <template is="Right" data="{{checked: index === active}}"/>
+        </view>
+         {{item.msg}}
+    </view>
+    <textarea class="list__textarea" auto-height bindinput="inputRemark" placeholder-class="list__textarea--placeholder" placeholder="请输入其它原因" maxlength="-1"></textarea>
+</view>
+
+<view class="btn">
+    <view class="app__button--orange" bindtap="tapSubmit">提交</view>
+</view>

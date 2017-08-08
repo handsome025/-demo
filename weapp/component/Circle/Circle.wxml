@@ -1,0 +1,5 @@
+<template name="Circle">
+    <view class="Circle Circle--{{type}}" style="right:{{ right }};top:{{ top }}" wx:if="{{ number > 0 }}">
+        {{number > 99 ? 99 : number}}
+    </view>
+</template>
